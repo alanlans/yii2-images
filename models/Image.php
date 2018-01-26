@@ -30,6 +30,17 @@ class Image extends \yii\db\ActiveRecord
     private $helper = false;
 
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+                'value' => new Expression('NOW()'),
+            ],
+        ];
+    }
 
     public function clearCache(){
         $subDir = $this->getSubDur();
